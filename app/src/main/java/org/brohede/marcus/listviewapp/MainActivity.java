@@ -2,21 +2,36 @@ package org.brohede.marcus.listviewapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private String[] mountainNames = {"Matterhorn","Mont Blanc","Denali"};
-    private String[] mountainLocations = {"Alps","Alps","Alaska"};
-    private int[] mountainHeights ={4478,4808,6190};
+
+    private String[] mountainNames = {"Matterhorn", "Mont Blanc", "Denali"};
+    private String[] mountainLocations = {"Alps", "Alps", "Alaska"};
+    private int[] mountainHeights = {4478, 4808, 6190};
+
+
+    Mountain m = new Mountain("Matterhorn", "Alps", 4478);
+    Mountain m2 = new Mountain("Mont Blanc", "Alps", 4808);
+    Mountain m3 = new Mountain("Denali", "Alaska", 6190);
+
     // Create ArrayLists from the raw data above and use these lists when populating your ListView.
+    ArrayList<String> berg = new ArrayList<String>(Arrays.asList(mountainNames));
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_tem_textview, R.id.list_item_textview, berg);
+        ListView lista = (ListView) findViewById(R.id.listview);
+        lista.setAdapter(adapter);
 
         // The onCreate method is run when the app is created.
         // Before you can implement this you need to create the layout xml files that
